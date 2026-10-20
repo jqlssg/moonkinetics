@@ -8,13 +8,13 @@ import {
 // Values
 pub fn conserved_value(Array[Double], Array[Double]) -> Double raise KineticsError
 
-pub fn ensemble_seed(Int, Int) -> Int raise KineticsError
+pub fn ensemble_seed(Int32, Int32) -> Int32 raise KineticsError
 
 pub fn network_from_json(String) -> Network raise KineticsError
 
 pub fn path_from_json(Network, String) -> Path raise KineticsError
 
-pub fn regular_grid(Double, Int) -> Array[Double] raise KineticsError
+pub fn regular_grid(Double, Int32) -> Array[Double] raise KineticsError
 
 // Errors
 pub suberror KineticsError {
@@ -29,31 +29,31 @@ pub struct Distribution {
   // private fields
 }
 pub fn Distribution::masses(Self) -> Array[Double]
-pub fn Distribution::segment_count(Self) -> Int
+pub fn Distribution::segment_count(Self) -> Int32
 pub fn Distribution::tail_bound(Self) -> Double
 pub fn Distribution::to_json(Self) -> Json
-pub fn Distribution::work_terms(Self) -> Int
+pub fn Distribution::work_terms(Self) -> Int32
 
 pub struct Ensemble {
   // private fields
 }
 pub fn Ensemble::covariances(Self) -> Array[Array[Array[Double]]] raise KineticsError
 pub fn Ensemble::means(Self) -> Trace raise KineticsError
-pub fn Ensemble::runs(Self) -> Int
+pub fn Ensemble::runs(Self) -> Int32
 pub fn Ensemble::standard_errors(Self) -> Array[Array[Double]] raise KineticsError
 
 pub struct Generator {
   // private fields
 }
-pub fn Generator::count_states(Self) -> Array[Array[Int]]
+pub fn Generator::count_states(Self) -> Array[Array[Int32]]
 pub fn Generator::dense(Self) -> Array[Array[Double]] raise KineticsError
 pub fn Generator::derivative(Self, Array[Double]) -> Array[Double] raise KineticsError
-pub fn Generator::evolve(Self, Array[Double], Double, tolerance? : Double, max_terms? : Int, max_work? : Int) -> Distribution raise KineticsError
+pub fn Generator::evolve(Self, Array[Double], Double, tolerance? : Double, max_terms? : Int32, max_work? : Int32) -> Distribution raise KineticsError
 pub fn Generator::exit_rates(Self) -> Array[Double]
 pub fn Generator::expectation(Self, Distribution, Array[Double]) -> (Double, Double) raise KineticsError
 pub fn Generator::mean_counts(Self, Distribution) -> (Array[Double], Array[Double]) raise KineticsError
-pub fn Generator::row_edges(Self, Int) -> Array[(Int, Double)] raise KineticsError
-pub fn Generator::size(Self) -> Int
+pub fn Generator::row_edges(Self, Int32) -> Array[(Int32, Double)] raise KineticsError
+pub fn Generator::size(Self) -> Int32
 
 pub struct Moments {
   // private fields
@@ -61,58 +61,58 @@ pub struct Moments {
 pub fn Moments::average(Self) -> Array[Double] raise KineticsError
 pub fn Moments::covariance(Self) -> Array[Array[Double]] raise KineticsError
 pub fn Moments::merge(Self, Self) -> Unit raise KineticsError
-pub fn Moments::new(Int) -> Self raise KineticsError
+pub fn Moments::new(Int32) -> Self raise KineticsError
 pub fn Moments::push(Self, Array[Double]) -> Unit raise KineticsError
-pub fn Moments::sample_count(Self) -> Int
+pub fn Moments::sample_count(Self) -> Int32
 
 pub struct Network {
   // private fields
 } derive(@debug.Debug)
-pub fn Network::concentrations(Self, Array[Int]) -> Array[Double] raise KineticsError
+pub fn Network::concentrations(Self, Array[Int32]) -> Array[Double] raise KineticsError
 pub fn Network::conservation_basis(Self, tolerance? : Double) -> Array[Array[Double]] raise KineticsError
 pub fn Network::conservation_residual(Self, Array[Double]) -> Array[Double] raise KineticsError
-pub fn Network::count_drift(Self, Array[Int]) -> Array[Double] raise KineticsError
-pub fn Network::diffusion(Self, Array[Int]) -> Array[Array[Double]] raise KineticsError
+pub fn Network::count_drift(Self, Array[Int32]) -> Array[Double] raise KineticsError
+pub fn Network::diffusion(Self, Array[Int32]) -> Array[Array[Double]] raise KineticsError
 pub fn Network::drift(Self, Array[Double]) -> Array[Double] raise KineticsError
-pub fn Network::enabled(Self, Array[Int], Int) -> Bool raise KineticsError
-pub fn Network::ensemble(Self, Array[Int], Array[Double], Int, seed? : Int, max_events? : Int) -> Ensemble raise KineticsError
-pub fn Network::event_counts(Self, Path) -> Array[Int] raise KineticsError
-pub fn Network::fire(Self, Array[Int], Int) -> Array[Int] raise KineticsError
+pub fn Network::enabled(Self, Array[Int32], Int32) -> Bool raise KineticsError
+pub fn Network::ensemble(Self, Array[Int32], Array[Double], Int32, seed? : Int32, max_events? : Int32) -> Ensemble raise KineticsError
+pub fn Network::event_counts(Self, Path) -> Array[Int32] raise KineticsError
+pub fn Network::fire(Self, Array[Int32], Int32) -> Array[Int32] raise KineticsError
 pub fn Network::fluxes(Self, Array[Double]) -> Array[Double] raise KineticsError
-pub fn Network::generator(Self, Array[Array[Int]]) -> Generator raise KineticsError
-pub fn Network::integrate(Self, Array[Double], Array[Double], max_step? : Double, max_steps? : Int) -> Trace raise KineticsError
+pub fn Network::generator(Self, Array[Array[Int32]]) -> Generator raise KineticsError
+pub fn Network::integrate(Self, Array[Double], Array[Double], max_step? : Double, max_steps? : Int32) -> Trace raise KineticsError
 pub fn Network::integrated_propensities(Self, Path) -> Array[Double] raise KineticsError
 pub fn Network::jacobian(Self, Array[Double]) -> Array[Array[Double]] raise KineticsError
 pub fn Network::log_likelihood(Self, Path) -> Double raise KineticsError
 pub fn Network::new(Array[String], Array[Reaction], volume? : Double) -> Self raise KineticsError
-pub fn Network::orders(Self) -> Array[Int]
+pub fn Network::orders(Self) -> Array[Int32]
 pub fn Network::path_score(Self, Path) -> Array[Double] raise KineticsError
-pub fn Network::propensities(Self, Array[Int]) -> Array[Double] raise KineticsError
-pub fn Network::reaction(Self, Int) -> Reaction raise KineticsError
-pub fn Network::reaction_count(Self) -> Int
-pub fn Network::rounded_counts(Self, Array[Double]) -> Array[Int] raise KineticsError
-pub fn Network::simulate(Self, Array[Int], Double, seed? : Int, max_events? : Int) -> Path raise KineticsError
+pub fn Network::propensities(Self, Array[Int32]) -> Array[Double] raise KineticsError
+pub fn Network::reaction(Self, Int32) -> Reaction raise KineticsError
+pub fn Network::reaction_count(Self) -> Int32
+pub fn Network::rounded_counts(Self, Array[Double]) -> Array[Int32] raise KineticsError
+pub fn Network::simulate(Self, Array[Int32], Double, seed? : Int32, max_events? : Int32) -> Path raise KineticsError
 pub fn Network::species(Self) -> Array[String]
-pub fn Network::species_count(Self) -> Int
-pub fn Network::stoichiometry(Self) -> Array[Array[Int]]
+pub fn Network::species_count(Self) -> Int32
+pub fn Network::stoichiometry(Self) -> Array[Array[Int32]]
 pub fn Network::system_volume(Self) -> Double
 pub fn Network::to_json(Self) -> Json
 pub fn Network::to_repr(Self) -> @debug.Repr
-pub fn Network::total_propensity(Self, Array[Int]) -> Double raise KineticsError
+pub fn Network::total_propensity(Self, Array[Int32]) -> Double raise KineticsError
 pub fn Network::validate_concentrations(Self, Array[Double]) -> Unit raise KineticsError
-pub fn Network::validate_counts(Self, Array[Int]) -> Unit raise KineticsError
-pub fn Network::with_rate(Self, Int, Double) -> Self raise KineticsError
+pub fn Network::validate_counts(Self, Array[Int32]) -> Unit raise KineticsError
+pub fn Network::with_rate(Self, Int32, Double) -> Self raise KineticsError
 
 pub struct Path {
   // private fields
 }
-pub fn Path::count_states(Self) -> Array[Array[Int]]
+pub fn Path::count_states(Self) -> Array[Array[Int32]]
 pub fn Path::end_time(Self) -> Double
-pub fn Path::event_channels(Self) -> Array[Int]
+pub fn Path::event_channels(Self) -> Array[Int32]
 pub fn Path::event_times(Self) -> Array[Double]
-pub fn Path::from_events(Network, Array[Int], Array[Double], Array[Int], Double) -> Self raise KineticsError
+pub fn Path::from_events(Network, Array[Int32], Array[Double], Array[Int32], Double) -> Self raise KineticsError
 pub fn Path::integrated_counts(Self) -> Array[Double] raise KineticsError
-pub fn Path::last_counts(Self) -> Array[Int]
+pub fn Path::last_counts(Self) -> Array[Int32]
 pub fn Path::sample(Self, Array[Double]) -> Trace raise KineticsError
 pub fn Path::to_csv(Self) -> String
 pub fn Path::to_json(Self) -> Json
@@ -120,20 +120,20 @@ pub fn Path::to_json(Self) -> Json
 pub struct Random {
   // private fields
 }
-pub fn Random::categorical(Self, Array[Double]) -> Int raise KineticsError
+pub fn Random::categorical(Self, Array[Double]) -> Int32 raise KineticsError
 pub fn Random::exponential(Self, Double) -> Double raise KineticsError
-pub fn Random::new(Int) -> Self raise KineticsError
-pub fn Random::next_int(Self) -> Int
-pub fn Random::seed_state(Self) -> Int
+pub fn Random::new(Int32) -> Self raise KineticsError
+pub fn Random::next_int(Self) -> Int32
+pub fn Random::seed_state(Self) -> Int32
 pub fn Random::uniform(Self) -> Double
 
 pub struct Reaction {
   // private fields
 } derive(@debug.Debug)
 pub fn Reaction::constant(Self) -> Double
-pub fn Reaction::new(Array[Int], Array[Int], Double) -> Self raise KineticsError
-pub fn Reaction::products(Self) -> Array[Int]
-pub fn Reaction::reactants(Self) -> Array[Int]
+pub fn Reaction::new(Array[Int32], Array[Int32], Double) -> Self raise KineticsError
+pub fn Reaction::products(Self) -> Array[Int32]
+pub fn Reaction::reactants(Self) -> Array[Int32]
 pub fn Reaction::to_repr(Self) -> @debug.Repr
 
 pub struct Trace {

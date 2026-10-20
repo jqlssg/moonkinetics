@@ -16,7 +16,7 @@
 
 ## 环境与安装
 
-使用官方稳定 MoonBit 工具链；开发基线为 `moon 0.1.20261012`、`moonc v0.10.15`。库不依赖平台 I/O 或外部服务；CI 配置验证 `wasm-gc`、`wasm`、`js`、Linux `native`。JS 运行还需 Node.js；native 需要 C 编译器和系统开发头文件。本机 Windows 的 native 编译能力与 CI 结果分开记录，见 [验收方法](docs/validation.md)。
+使用官方稳定 MoonBit 工具链；开发基线为 `moon 0.1.20261016`、`moonc v0.10.16`。库不依赖平台 I/O 或外部服务；CI 配置验证 `wasm-gc`、`wasm`、`js`、Linux `native`。JS 运行还需 Node.js；native 需要 C 编译器和系统开发头文件。本机 Windows 的 native 编译能力与 CI 结果分开记录，见 [验收方法](docs/validation.md)。
 
 在你的 MoonBit 工程中安装精确版本：
 
@@ -28,7 +28,7 @@ moon add jqlssg/moonkinetics@0.1.0
 
 ```moonbit
 import { "jqlssg/moonkinetics" @k }
-options("is-main": true)
+pkgtype(kind: "executable")
 ```
 
 将以下代码放入该包的 `main.mbt`，执行 `moon run 包目录 --target js`：
