@@ -19,6 +19,16 @@ pub suberror KineticsError {
 pub fn KineticsError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+pub struct Moments {
+  // private fields
+}
+pub fn Moments::average(Self) -> Array[Double] raise KineticsError
+pub fn Moments::covariance(Self) -> Array[Array[Double]] raise KineticsError
+pub fn Moments::merge(Self, Self) -> Unit raise KineticsError
+pub fn Moments::new(Int) -> Self raise KineticsError
+pub fn Moments::push(Self, Array[Double]) -> Unit raise KineticsError
+pub fn Moments::sample_count(Self) -> Int
+
 pub struct Network {
   // private fields
 } derive(@debug.Debug)
