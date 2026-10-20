@@ -21,15 +21,22 @@ pub struct Network {
   reactions : Array[Reaction]
   volume : Double
 } derive(@debug.Debug)
+pub fn Network::concentrations(Self, Array[Int]) -> Array[Double] raise KineticsError
+pub fn Network::enabled(Self, Array[Int], Int) -> Bool raise KineticsError
+pub fn Network::fire(Self, Array[Int], Int) -> Array[Int] raise KineticsError
 pub fn Network::new(Array[String], Array[Reaction], volume? : Double) -> Self raise KineticsError
+pub fn Network::orders(Self) -> Array[Int]
 pub fn Network::reaction(Self, Int) -> Reaction raise KineticsError
 pub fn Network::reaction_count(Self) -> Int
+pub fn Network::rounded_counts(Self, Array[Double]) -> Array[Int] raise KineticsError
 pub fn Network::species(Self) -> Array[String]
 pub fn Network::species_count(Self) -> Int
+pub fn Network::stoichiometry(Self) -> Array[Array[Int]]
 pub fn Network::system_volume(Self) -> Double
 pub fn Network::to_repr(Self) -> @debug.Repr
 pub fn Network::validate_concentrations(Self, Array[Double]) -> Unit raise KineticsError
 pub fn Network::validate_counts(Self, Array[Int]) -> Unit raise KineticsError
+pub fn Network::with_rate(Self, Int, Double) -> Self raise KineticsError
 
 pub struct Reaction {
   input : Array[Int]
