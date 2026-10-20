@@ -12,6 +12,8 @@ pub fn ensemble_seed(Int, Int) -> Int raise KineticsError
 
 pub fn network_from_json(String) -> Network raise KineticsError
 
+pub fn path_from_json(Network, String) -> Path raise KineticsError
+
 pub fn regular_grid(Double, Int) -> Array[Double] raise KineticsError
 
 // Errors
@@ -29,6 +31,7 @@ pub struct Distribution {
 pub fn Distribution::masses(Self) -> Array[Double]
 pub fn Distribution::segment_count(Self) -> Int
 pub fn Distribution::tail_bound(Self) -> Double
+pub fn Distribution::to_json(Self) -> Json
 pub fn Distribution::work_terms(Self) -> Int
 
 pub struct Ensemble {
@@ -111,6 +114,8 @@ pub fn Path::from_events(Network, Array[Int], Array[Double], Array[Int], Double)
 pub fn Path::integrated_counts(Self) -> Array[Double] raise KineticsError
 pub fn Path::last_counts(Self) -> Array[Int]
 pub fn Path::sample(Self, Array[Double]) -> Trace raise KineticsError
+pub fn Path::to_csv(Self) -> String
+pub fn Path::to_json(Self) -> Json
 
 pub struct Random {
   // private fields
@@ -140,6 +145,8 @@ pub fn Trace::last(Self) -> Array[Double]
 pub fn Trace::new(Array[Double], Array[Array[Double]]) -> Self raise KineticsError
 pub fn Trace::sample_times(Self) -> Array[Double]
 pub fn Trace::samples(Self) -> Array[Array[Double]]
+pub fn Trace::to_csv(Self) -> String
+pub fn Trace::to_json(Self) -> Json
 
 // Type aliases
 
