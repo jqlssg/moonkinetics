@@ -39,6 +39,7 @@ pub fn Network::propensities(Self, Array[Int]) -> Array[Double] raise KineticsEr
 pub fn Network::reaction(Self, Int) -> Reaction raise KineticsError
 pub fn Network::reaction_count(Self) -> Int
 pub fn Network::rounded_counts(Self, Array[Double]) -> Array[Int] raise KineticsError
+pub fn Network::simulate(Self, Array[Int], Double, seed? : Int, max_events? : Int) -> Path raise KineticsError
 pub fn Network::species(Self) -> Array[String]
 pub fn Network::species_count(Self) -> Int
 pub fn Network::stoichiometry(Self) -> Array[Array[Int]]
@@ -48,6 +49,17 @@ pub fn Network::total_propensity(Self, Array[Int]) -> Double raise KineticsError
 pub fn Network::validate_concentrations(Self, Array[Double]) -> Unit raise KineticsError
 pub fn Network::validate_counts(Self, Array[Int]) -> Unit raise KineticsError
 pub fn Network::with_rate(Self, Int, Double) -> Self raise KineticsError
+
+pub struct Path {
+  // private fields
+}
+pub fn Path::count_states(Self) -> Array[Array[Int]]
+pub fn Path::end_time(Self) -> Double
+pub fn Path::event_channels(Self) -> Array[Int]
+pub fn Path::event_times(Self) -> Array[Double]
+pub fn Path::from_events(Network, Array[Int], Array[Double], Array[Int], Double) -> Self raise KineticsError
+pub fn Path::last_counts(Self) -> Array[Int]
+pub fn Path::sample(Self, Array[Double]) -> Trace raise KineticsError
 
 pub struct Random {
   // private fields
