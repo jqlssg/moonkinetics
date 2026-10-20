@@ -10,6 +10,8 @@ pub fn conserved_value(Array[Double], Array[Double]) -> Double raise KineticsErr
 
 pub fn ensemble_seed(Int, Int) -> Int raise KineticsError
 
+pub fn network_from_json(String) -> Network raise KineticsError
+
 pub fn regular_grid(Double, Int) -> Array[Double] raise KineticsError
 
 // Errors
@@ -91,6 +93,7 @@ pub fn Network::species(Self) -> Array[String]
 pub fn Network::species_count(Self) -> Int
 pub fn Network::stoichiometry(Self) -> Array[Array[Int]]
 pub fn Network::system_volume(Self) -> Double
+pub fn Network::to_json(Self) -> Json
 pub fn Network::to_repr(Self) -> @debug.Repr
 pub fn Network::total_propensity(Self, Array[Int]) -> Double raise KineticsError
 pub fn Network::validate_concentrations(Self, Array[Double]) -> Unit raise KineticsError
