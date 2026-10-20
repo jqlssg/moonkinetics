@@ -99,6 +99,10 @@ pub fn Generator::evolve(
   let mut terms = 0
   let mut work = 0
   for _ in 0..<segments {
+    let mut mass = 0.0
+    for x in p {
+      mass += x
+    }
     let mut term = p.copy()
     let mut weight = @math.exp(-mu)
     let out = term.map(x => x * weight)
@@ -112,7 +116,7 @@ pub fn Generator::evolve(
       let next_weight = weight * mu / (k + 1).to_double()
       let ratio = mu / (k + 2).to_double()
       if ratio < 1.0 {
-        let bound = next_weight / (1.0 - ratio)
+        let bound = mass * next_weight / (1.0 - ratio)
         if bound <= epsilon {
           tail += bound
           break

@@ -13,11 +13,9 @@ pub fn Network::jacobian(
       if power == 0 {
         continue
       }
-      let mut d = r.rate * power.to_double()
-      for i in 0..<n {
-        d *= int_power(state[i], r.input[i] - (if i == col { 1 } else { 0 }))
-        finite(d, "flux derivative")
-      }
+      let powers = r.input.copy()
+      powers[col] -= 1
+      let d = monomial(r.rate * power.to_double(), state, powers)
       for row in 0..<n {
         matrix[row][col] += (r.output[row] - r.input[row]).to_double() * d
         finite(matrix[row][col], "Jacobian")

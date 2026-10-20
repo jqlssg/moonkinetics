@@ -1,10 +1,30 @@
 ///|
-fn int_power(x : Double, exponent : Int32) -> Double {
-  let mut y = 1.0
-  for _ in 0..<exponent {
-    y *= x
+// All factors are nonnegative; pre-scan zeros to avoid spurious overflow.
+// Reject unrepresentable positive intermediates rather than invent absorption.
+fn monomial(
+  rate : Double,
+  state : Array[Double],
+  powers : Array[Int32],
+) -> Double raise KineticsError {
+  if rate == 0.0 {
+    return 0.0
   }
-  y
+  for i in 0..<state.length() {
+    if powers[i] > 0 && state[i] == 0.0 {
+      return 0.0
+    }
+  }
+  let mut result = rate
+  for i in 0..<state.length() {
+    for _ in 0..<powers[i] {
+      result *= state[i]
+      finite(result, "mass-action monomial")
+      if result == 0.0 {
+        raise Numerical("mass-action monomial underflow")
+      }
+    }
+  }
+  result
 }
 
 ///|
@@ -15,11 +35,7 @@ pub fn Network::fluxes(
   self.validate_concentrations(concentrations)
   let values : Array[Double] = []
   for r in self.reactions {
-    let mut value = r.rate
-    for i in 0..<concentrations.length() {
-      value *= int_power(concentrations[i], r.input[i])
-      finite(value, "mass-action flux")
-    }
+    let value = monomial(r.rate, concentrations, r.input)
     values.push(value)
   }
   values
@@ -64,10 +80,17 @@ pub fn Network::propensities(
       continue
     }
     let mut value = r.rate * self.volume
+    finite(value, "propensity scale")
+    if value == 0.0 {
+      raise Numerical("propensity scale underflow")
+    }
     for i in 0..<state.length() {
       for k in 0..<r.input[i] {
         value *= (state[i] - k).to_double() / self.volume
         finite(value, "mass-action propensity")
+        if value == 0.0 {
+          raise Numerical("mass-action propensity underflow")
+        }
       }
     }
     // The validated order bound ensures products remain small enough to check.
