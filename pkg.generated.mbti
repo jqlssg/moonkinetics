@@ -8,6 +8,8 @@ import {
 // Values
 pub fn conserved_value(Array[Double], Array[Double]) -> Double raise KineticsError
 
+pub fn regular_grid(Double, Int) -> Array[Double] raise KineticsError
+
 // Errors
 pub suberror KineticsError {
   Invalid(String)
@@ -64,6 +66,16 @@ pub fn Reaction::new(Array[Int], Array[Int], Double) -> Self raise KineticsError
 pub fn Reaction::products(Self) -> Array[Int]
 pub fn Reaction::reactants(Self) -> Array[Int]
 pub fn Reaction::to_repr(Self) -> @debug.Repr
+
+pub struct Trace {
+  // private fields
+}
+pub fn Trace::at(Self, Double) -> Array[Double] raise KineticsError
+pub fn Trace::integral(Self) -> Array[Double] raise KineticsError
+pub fn Trace::last(Self) -> Array[Double]
+pub fn Trace::new(Array[Double], Array[Array[Double]]) -> Self raise KineticsError
+pub fn Trace::sample_times(Self) -> Array[Double]
+pub fn Trace::samples(Self) -> Array[Array[Double]]
 
 // Type aliases
 
