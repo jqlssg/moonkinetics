@@ -1,0 +1,5 @@
+import {
+  "jqlssg/moonkinetics" @k,
+}
+
+pkgtype(kind: "executable")
