@@ -14,8 +14,10 @@ def main():
         paths=git('diff-tree','--root','--no-commit-id','--name-only','-r',sha).splitlines()
         production=[p for p in paths if '/' not in p and p.endswith('.mbt') and not p.endswith(('_test.mbt','_wbtest.mbt'))]
         reference='scripts/reference.py' in paths and 'cmd/reference/main.mbt' in paths
+        workflow=any(p in paths for p in ('cmd/biochemical/main.mbt','cmd/population/main.mbt','cmd/epidemic/main.mbt'))
+        # These end-to-end integrations have numerical/invariant assertions, not print-only glue.
         # This is a candidate inventory; purpose/retained result must also be reviewed.
-        if production or reference:
+        if production or reference or workflow:
             commits.append({'sha':sha,'subject':git('show','-s','--format=%s',sha).strip(),'files':paths})
     assert len(commits)>=20, len(commits)
     readme=(ROOT/'README.md').read_text(encoding='utf8')
