@@ -17,16 +17,16 @@ pub fn KineticsError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
 pub struct Network {
-  names : Array[String]
-  reactions : Array[Reaction]
-  volume : Double
+  // private fields
 } derive(@debug.Debug)
 pub fn Network::concentrations(Self, Array[Int]) -> Array[Double] raise KineticsError
 pub fn Network::count_drift(Self, Array[Int]) -> Array[Double] raise KineticsError
+pub fn Network::diffusion(Self, Array[Int]) -> Array[Array[Double]] raise KineticsError
 pub fn Network::drift(Self, Array[Double]) -> Array[Double] raise KineticsError
 pub fn Network::enabled(Self, Array[Int], Int) -> Bool raise KineticsError
 pub fn Network::fire(Self, Array[Int], Int) -> Array[Int] raise KineticsError
 pub fn Network::fluxes(Self, Array[Double]) -> Array[Double] raise KineticsError
+pub fn Network::jacobian(Self, Array[Double]) -> Array[Array[Double]] raise KineticsError
 pub fn Network::new(Array[String], Array[Reaction], volume? : Double) -> Self raise KineticsError
 pub fn Network::orders(Self) -> Array[Int]
 pub fn Network::propensities(Self, Array[Int]) -> Array[Double] raise KineticsError
@@ -44,9 +44,7 @@ pub fn Network::validate_counts(Self, Array[Int]) -> Unit raise KineticsError
 pub fn Network::with_rate(Self, Int, Double) -> Self raise KineticsError
 
 pub struct Reaction {
-  input : Array[Int]
-  output : Array[Int]
-  rate : Double
+  // private fields
 } derive(@debug.Debug)
 pub fn Reaction::constant(Self) -> Double
 pub fn Reaction::new(Array[Int], Array[Int], Double) -> Self raise KineticsError

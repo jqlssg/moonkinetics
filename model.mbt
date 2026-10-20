@@ -22,9 +22,9 @@ fn nonnegative(x : Double, name : String) -> Unit raise KineticsError {
 
 ///|
 pub struct Reaction {
-  input : Array[Int32]
-  output : Array[Int32]
-  rate : Double
+  priv input : Array[Int32]
+  priv output : Array[Int32]
+  priv rate : Double
 } derive(@debug.Debug)
 
 ///|
@@ -74,9 +74,9 @@ pub fn Reaction::constant(self : Reaction) -> Double {
 
 ///|
 pub struct Network {
-  names : Array[String]
-  reactions : Array[Reaction]
-  volume : Double
+  priv names : Array[String]
+  priv reactions : Array[Reaction]
+  priv volume : Double
 } derive(@debug.Debug)
 
 ///|
