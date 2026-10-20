@@ -1,0 +1,6 @@
+import {
+  "jqlssg/moonkinetics" @k,
+  "moonbitlang/core/math",
+}
+
+pkgtype(kind: "executable")
