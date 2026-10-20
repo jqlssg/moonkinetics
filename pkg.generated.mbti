@@ -6,6 +6,7 @@ import {
 }
 
 // Values
+pub fn conserved_value(Array[Double], Array[Double]) -> Double raise KineticsError
 
 // Errors
 pub suberror KineticsError {
@@ -20,6 +21,8 @@ pub struct Network {
   // private fields
 } derive(@debug.Debug)
 pub fn Network::concentrations(Self, Array[Int]) -> Array[Double] raise KineticsError
+pub fn Network::conservation_basis(Self, tolerance? : Double) -> Array[Array[Double]] raise KineticsError
+pub fn Network::conservation_residual(Self, Array[Double]) -> Array[Double] raise KineticsError
 pub fn Network::count_drift(Self, Array[Int]) -> Array[Double] raise KineticsError
 pub fn Network::diffusion(Self, Array[Int]) -> Array[Array[Double]] raise KineticsError
 pub fn Network::drift(Self, Array[Double]) -> Array[Double] raise KineticsError
