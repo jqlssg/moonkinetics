@@ -45,6 +45,8 @@ pub fn Generator::dense(Self) -> Array[Array[Double]] raise KineticsError
 pub fn Generator::derivative(Self, Array[Double]) -> Array[Double] raise KineticsError
 pub fn Generator::evolve(Self, Array[Double], Double, tolerance? : Double, max_terms? : Int, max_work? : Int) -> Distribution raise KineticsError
 pub fn Generator::exit_rates(Self) -> Array[Double]
+pub fn Generator::expectation(Self, Distribution, Array[Double]) -> (Double, Double) raise KineticsError
+pub fn Generator::mean_counts(Self, Distribution) -> (Array[Double], Array[Double]) raise KineticsError
 pub fn Generator::row_edges(Self, Int) -> Array[(Int, Double)] raise KineticsError
 pub fn Generator::size(Self) -> Int
 
@@ -69,10 +71,12 @@ pub fn Network::diffusion(Self, Array[Int]) -> Array[Array[Double]] raise Kineti
 pub fn Network::drift(Self, Array[Double]) -> Array[Double] raise KineticsError
 pub fn Network::enabled(Self, Array[Int], Int) -> Bool raise KineticsError
 pub fn Network::ensemble(Self, Array[Int], Array[Double], Int, seed? : Int, max_events? : Int) -> Ensemble raise KineticsError
+pub fn Network::event_counts(Self, Path) -> Array[Int] raise KineticsError
 pub fn Network::fire(Self, Array[Int], Int) -> Array[Int] raise KineticsError
 pub fn Network::fluxes(Self, Array[Double]) -> Array[Double] raise KineticsError
 pub fn Network::generator(Self, Array[Array[Int]]) -> Generator raise KineticsError
 pub fn Network::integrate(Self, Array[Double], Array[Double], max_step? : Double, max_steps? : Int) -> Trace raise KineticsError
+pub fn Network::integrated_propensities(Self, Path) -> Array[Double] raise KineticsError
 pub fn Network::jacobian(Self, Array[Double]) -> Array[Array[Double]] raise KineticsError
 pub fn Network::log_likelihood(Self, Path) -> Double raise KineticsError
 pub fn Network::new(Array[String], Array[Reaction], volume? : Double) -> Self raise KineticsError
@@ -101,6 +105,7 @@ pub fn Path::end_time(Self) -> Double
 pub fn Path::event_channels(Self) -> Array[Int]
 pub fn Path::event_times(Self) -> Array[Double]
 pub fn Path::from_events(Network, Array[Int], Array[Double], Array[Int], Double) -> Self raise KineticsError
+pub fn Path::integrated_counts(Self) -> Array[Double] raise KineticsError
 pub fn Path::last_counts(Self) -> Array[Int]
 pub fn Path::sample(Self, Array[Double]) -> Trace raise KineticsError
 
