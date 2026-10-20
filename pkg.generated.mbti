@@ -29,6 +29,16 @@ pub fn Ensemble::means(Self) -> Trace raise KineticsError
 pub fn Ensemble::runs(Self) -> Int
 pub fn Ensemble::standard_errors(Self) -> Array[Array[Double]] raise KineticsError
 
+pub struct Generator {
+  // private fields
+}
+pub fn Generator::count_states(Self) -> Array[Array[Int]]
+pub fn Generator::dense(Self) -> Array[Array[Double]] raise KineticsError
+pub fn Generator::derivative(Self, Array[Double]) -> Array[Double] raise KineticsError
+pub fn Generator::exit_rates(Self) -> Array[Double]
+pub fn Generator::row_edges(Self, Int) -> Array[(Int, Double)] raise KineticsError
+pub fn Generator::size(Self) -> Int
+
 pub struct Moments {
   // private fields
 }
@@ -52,6 +62,7 @@ pub fn Network::enabled(Self, Array[Int], Int) -> Bool raise KineticsError
 pub fn Network::ensemble(Self, Array[Int], Array[Double], Int, seed? : Int, max_events? : Int) -> Ensemble raise KineticsError
 pub fn Network::fire(Self, Array[Int], Int) -> Array[Int] raise KineticsError
 pub fn Network::fluxes(Self, Array[Double]) -> Array[Double] raise KineticsError
+pub fn Network::generator(Self, Array[Array[Int]]) -> Generator raise KineticsError
 pub fn Network::integrate(Self, Array[Double], Array[Double], max_step? : Double, max_steps? : Int) -> Trace raise KineticsError
 pub fn Network::jacobian(Self, Array[Double]) -> Array[Array[Double]] raise KineticsError
 pub fn Network::log_likelihood(Self, Path) -> Double raise KineticsError
