@@ -8,6 +8,8 @@ import {
 // Values
 pub fn conserved_value(Array[Double], Array[Double]) -> Double raise KineticsError
 
+pub fn ensemble_seed(Int, Int) -> Int raise KineticsError
+
 pub fn regular_grid(Double, Int) -> Array[Double] raise KineticsError
 
 // Errors
@@ -19,6 +21,14 @@ pub suberror KineticsError {
 pub fn KineticsError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+pub struct Ensemble {
+  // private fields
+}
+pub fn Ensemble::covariances(Self) -> Array[Array[Array[Double]]] raise KineticsError
+pub fn Ensemble::means(Self) -> Trace raise KineticsError
+pub fn Ensemble::runs(Self) -> Int
+pub fn Ensemble::standard_errors(Self) -> Array[Array[Double]] raise KineticsError
+
 pub struct Moments {
   // private fields
 }
@@ -39,6 +49,7 @@ pub fn Network::count_drift(Self, Array[Int]) -> Array[Double] raise KineticsErr
 pub fn Network::diffusion(Self, Array[Int]) -> Array[Array[Double]] raise KineticsError
 pub fn Network::drift(Self, Array[Double]) -> Array[Double] raise KineticsError
 pub fn Network::enabled(Self, Array[Int], Int) -> Bool raise KineticsError
+pub fn Network::ensemble(Self, Array[Int], Array[Double], Int, seed? : Int, max_events? : Int) -> Ensemble raise KineticsError
 pub fn Network::fire(Self, Array[Int], Int) -> Array[Int] raise KineticsError
 pub fn Network::fluxes(Self, Array[Double]) -> Array[Double] raise KineticsError
 pub fn Network::integrate(Self, Array[Double], Array[Double], max_step? : Double, max_steps? : Int) -> Trace raise KineticsError
