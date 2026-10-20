@@ -33,8 +33,10 @@ pub fn Network::fire(Self, Array[Int], Int) -> Array[Int] raise KineticsError
 pub fn Network::fluxes(Self, Array[Double]) -> Array[Double] raise KineticsError
 pub fn Network::integrate(Self, Array[Double], Array[Double], max_step? : Double, max_steps? : Int) -> Trace raise KineticsError
 pub fn Network::jacobian(Self, Array[Double]) -> Array[Array[Double]] raise KineticsError
+pub fn Network::log_likelihood(Self, Path) -> Double raise KineticsError
 pub fn Network::new(Array[String], Array[Reaction], volume? : Double) -> Self raise KineticsError
 pub fn Network::orders(Self) -> Array[Int]
+pub fn Network::path_score(Self, Path) -> Array[Double] raise KineticsError
 pub fn Network::propensities(Self, Array[Int]) -> Array[Double] raise KineticsError
 pub fn Network::reaction(Self, Int) -> Reaction raise KineticsError
 pub fn Network::reaction_count(Self) -> Int
