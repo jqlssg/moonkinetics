@@ -21,6 +21,14 @@ pub suberror KineticsError {
 pub fn KineticsError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+pub struct Distribution {
+  // private fields
+}
+pub fn Distribution::masses(Self) -> Array[Double]
+pub fn Distribution::segment_count(Self) -> Int
+pub fn Distribution::tail_bound(Self) -> Double
+pub fn Distribution::work_terms(Self) -> Int
+
 pub struct Ensemble {
   // private fields
 }
@@ -35,6 +43,7 @@ pub struct Generator {
 pub fn Generator::count_states(Self) -> Array[Array[Int]]
 pub fn Generator::dense(Self) -> Array[Array[Double]] raise KineticsError
 pub fn Generator::derivative(Self, Array[Double]) -> Array[Double] raise KineticsError
+pub fn Generator::evolve(Self, Array[Double], Double, tolerance? : Double, max_terms? : Int, max_work? : Int) -> Distribution raise KineticsError
 pub fn Generator::exit_rates(Self) -> Array[Double]
 pub fn Generator::row_edges(Self, Int) -> Array[(Int, Double)] raise KineticsError
 pub fn Generator::size(Self) -> Int
