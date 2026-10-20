@@ -1,0 +1,49 @@
+name: MoonKinetics verification
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  targets:
+    name: Verify (${{ matrix.target }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [wasm-gc, wasm, js, native]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install official stable MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh -o /tmp/install-moon.sh
+          bash /tmp/install-moon.sh
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Record toolchain and initialize official registry
+        run: |
+          moon version --all
+          moon update
+      - name: Interfaces and formatting
+        run: |
+          moon info
+          git diff --exit-code -- '*.mbti'
+          moon fmt --check
+      - name: Check build test
+        run: |
+          moon check --target "${{ matrix.target }}" --deny-warn
+          moon build --target "${{ matrix.target }}" --deny-warn
+          moon test --target "${{ matrix.target }}" --deny-warn
+      - name: Downstream workflows and README
+        run: |
+          moon run cmd/quickstart --target "${{ matrix.target }}"
+          moon run cmd/biochemical --target "${{ matrix.target }}"
+          moon run cmd/population --target "${{ matrix.target }}"
+          moon run cmd/epidemic --target "${{ matrix.target }}"
+      - name: Independent reference and source audit
+        if: matrix.target == 'js'
+        run: |
+          python3 scripts/reference.py --target js
+          python3 scripts/audit.py
