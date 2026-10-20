@@ -46,6 +46,16 @@ pub fn Network::validate_concentrations(Self, Array[Double]) -> Unit raise Kinet
 pub fn Network::validate_counts(Self, Array[Int]) -> Unit raise KineticsError
 pub fn Network::with_rate(Self, Int, Double) -> Self raise KineticsError
 
+pub struct Random {
+  // private fields
+}
+pub fn Random::categorical(Self, Array[Double]) -> Int raise KineticsError
+pub fn Random::exponential(Self, Double) -> Double raise KineticsError
+pub fn Random::new(Int) -> Self raise KineticsError
+pub fn Random::next_int(Self) -> Int
+pub fn Random::seed_state(Self) -> Int
+pub fn Random::uniform(Self) -> Double
+
 pub struct Reaction {
   // private fields
 } derive(@debug.Debug)
